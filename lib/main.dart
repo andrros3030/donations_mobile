@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:donations_mobile/donationSetUp.dart';
 import 'package:donations_mobile/styles.dart';
 import 'package:flutter/material.dart';
-
+import 'icon_pack_icons.dart';
 void main() {
   runApp(MyApp());
 }
@@ -146,7 +146,7 @@ class _startPageState extends State<startPage> {
                   child: ListTile(
                     title: Text("Целевой сбор", style: black20Bold.copyWith(fontSize: 18),),
                     subtitle: Text("Когда есть определенная цель", style: grey14.copyWith(fontSize: 16),),
-                    leading: Container(child: Icon(Icons.add_circle_outline, color: primaryBlue,),),
+                    leading: Container(child: Icon(IconPack.scope, color: primaryBlue,),),
                     trailing: Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey),),
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(false)));
@@ -163,7 +163,7 @@ class _startPageState extends State<startPage> {
                   child: ListTile(
                     title: Text("Регулярный сбор", style: black20Bold.copyWith(fontSize: 18),),
                     subtitle: Text("Когда помощь нужна ежемесячно", style: grey14.copyWith(fontSize: 16),),
-                    leading: Container(child: Icon(Icons.calendar_today, color: primaryBlue,),),
+                    leading: Container(child: Icon(IconPack.calendar, color: primaryBlue,),),
                     trailing: Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey),),
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(true)));

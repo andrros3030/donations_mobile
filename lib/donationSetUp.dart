@@ -1,3 +1,4 @@
+import 'package:donations_mobile/icon_pack_icons.dart';
 import 'package:donations_mobile/styles.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +116,7 @@ class _donationPage extends State<donationsPage>{
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.photo, color: primaryBlue, size: 36,),
+              Icon(IconPack.addimage, color: primaryBlue, size: 36,),
               Text("Загрузить обложку", style: blue16,),
             ],
           ),
