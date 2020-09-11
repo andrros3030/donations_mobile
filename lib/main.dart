@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:donations_mobile/donationSetUp.dart';
 import 'package:donations_mobile/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class _startPageState extends State<startPage> {
               width: _width,
               padding: EdgeInsets.symmetric(horizontal: 12),
               alignment: Alignment.center,
-              color: Colors.white,
+              color: primaryBackground,
               child: SafeArea(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,14 +61,14 @@ class _startPageState extends State<startPage> {
                     Expanded(child: SizedBox(), flex: 1,),
                     Text("Пожертвования", textAlign: TextAlign.center, style: black20Bold),
                     Expanded(child: SizedBox(), flex: 1,),
-                    Container(child: Divider(color: Colors.grey.withOpacity(0.3), thickness: 0.5, height: 0.5,),),
+                    Container(child: Divider(color: greyDiv, thickness: 0.5, height: 0.5,),),
                   ],
                 ),
               ),
             ),
         ),
         body: Container(
-          color:Colors.white,
+          color: primaryBackground,
           height: _height,
           width: _width,
           alignment: Alignment.center,
@@ -75,7 +76,7 @@ class _startPageState extends State<startPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(child: Container(
-                child: Text("У Вас пока нет сборов.\nНачните доброе дело", textAlign: TextAlign.center, style: grey18),
+                child: Text("У Вас пока нет сборов.\nНачните доброе дело", textAlign: TextAlign.center, style: grey16hint),
               )),
               SizedBox(height: 28,),
               MaterialButton(
@@ -83,9 +84,9 @@ class _startPageState extends State<startPage> {
                   goNext();
                 },
                 elevation: 0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                 color: primaryBlue,
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Text("Создать сбор", textAlign: TextAlign.center, style: white18),
               ),
             ],
@@ -105,7 +106,7 @@ class _startPageState extends State<startPage> {
               width: _width,
               padding: EdgeInsets.symmetric(horizontal: 12),
               alignment: Alignment.center,
-              color: Colors.white,
+              color: primaryBackground,
               child: SafeArea(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +122,7 @@ class _startPageState extends State<startPage> {
                         ],
                       ),),
                     Expanded(child: SizedBox(), flex: 1,),
-                    Container(child: Divider(color: Colors.grey.withOpacity(0.3), thickness: 0.5, height: 0.5,),),
+                    Container(child: Divider(color: greyDiv, thickness: 0.5, height: 0.5,),),
                   ],
                 ),
               ),
@@ -131,7 +132,7 @@ class _startPageState extends State<startPage> {
             width: _width,
             height: _height,
             alignment: Alignment.center,
-            color: Colors.white,
+            color: primaryBackground,
             padding: EdgeInsets.symmetric(horizontal: 12),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -139,16 +140,16 @@ class _startPageState extends State<startPage> {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey.withOpacity(0.1)),
-                      color: Colors.grey.withOpacity(0.05)
+                      border: Border.all(color: greyBorder),
+                      color: greyField
                   ),
                   child: ListTile(
                     title: Text("Целевой сбор", style: black20Bold.copyWith(fontSize: 18),),
-                    subtitle: Text("Когда есть определенная цель", style: grey18.copyWith(fontSize: 16),),
+                    subtitle: Text("Когда есть определенная цель", style: grey14.copyWith(fontSize: 16),),
                     leading: Container(child: Icon(Icons.add_circle_outline, color: primaryBlue,),),
                     trailing: Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey),),
                     onTap: (){
-                      print("1");
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(false)));
                     },
                   ),
                 ),
@@ -156,16 +157,16 @@ class _startPageState extends State<startPage> {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey.withOpacity(0.1)),
-                      color: Colors.grey.withOpacity(0.05)
+                      border: Border.all(color: greyBorder),
+                      color: greyField
                   ),
                   child: ListTile(
                     title: Text("Регулярный сбор", style: black20Bold.copyWith(fontSize: 18),),
-                    subtitle: Text("Когда помощь нужна ежемесячно", style: grey18.copyWith(fontSize: 16),),
+                    subtitle: Text("Когда помощь нужна ежемесячно", style: grey14.copyWith(fontSize: 16),),
                     leading: Container(child: Icon(Icons.calendar_today, color: primaryBlue,),),
                     trailing: Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey),),
                     onTap: (){
-                      print("2");
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(true)));
                     },
                   ),
                 ),
