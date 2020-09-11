@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 Color primaryBlue = Color(0xFF4986CC);
 Color primaryBackground = Color(0xFFFFFFFF);
@@ -17,3 +18,8 @@ TextStyle white18 = TextStyle(color: Colors.white, fontSize: 18);
 TextStyle blue16 = TextStyle(color: primaryBlue, fontSize: 16);
 TextStyle grey12 = TextStyle(color: Colors.grey, fontSize: 12);
 Widget backButton = Container(child: Icon(Icons.keyboard_arrow_left, color: primaryBlue, size: 32,), padding: EdgeInsets.all(2), color: Colors.transparent,);
+
+String formateToLocalDate(DateTime date){
+  var formatter = DateFormat('dd.MM.yyyy');
+  return formatter.format(date);
+}
