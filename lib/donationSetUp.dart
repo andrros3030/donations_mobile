@@ -1,3 +1,4 @@
+import 'package:donations_mobile/finalScreen.dart';
 import 'package:donations_mobile/icon_pack_icons.dart';
 import 'package:donations_mobile/styles.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -36,20 +37,39 @@ class _donationPage extends State<donationsPage>{
     );
   }
 
+  Image preview ; //заглушка для изображения, в будущем - выбор через ImagePicker
+  String name, value, target, descText; //параметры пожертвования
+  String selectedPay = "guid_for_1234"; //выбранный ID кошелька
+  String author = "Иван Иванов"; //выбранный ID человека (или сообщества), назначающего сборы
+  //все полученные данные мы передаем в следующую форму, но вне мвп - сохраняем в базу
+
   double _width, _height;
-  bool hasImage = false;
-  String name, value, target, descText;
+  bool hasImage = false; //пы.сы.: вероятнее всего изображение должно быть необязательным, поэтому в приложении нет проверки на заполненность поля "обложка"
 
   TextEditingController _enteredName = new TextEditingController();
   TextEditingController _enteredValue = new TextEditingController();
   TextEditingController _enteredTarget = new TextEditingController();
   TextEditingController _enteredDesc = new TextEditingController();
 
-  String selectedPay = "guid_for_1234";
-  String author = "Иван Иванов";
   int step = 0;
   final _current = new GlobalKey<FormState>();
   final _secondary = new GlobalKey<FormState>();
+
+  goToFinal({bool regular=false}){
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>
+    new finalView(
+      name: name,
+      value: int.parse(value),
+      selectedPay: selectedPay,
+      author: author,
+      currentType: regular?DonationTypes.repeatable:(needDate?DonationTypes.toDate:DonationTypes.toSumm),
+      date: _date,
+      descText: descText,
+      preview: preview,
+      moneyLeft: int.parse(value),
+      target: target,
+    )));
+  }
 
   nextStep(){
     if(!widget.regular)
@@ -57,7 +77,7 @@ class _donationPage extends State<donationsPage>{
         step+=1;
       });
     else{
-      print("that's all");
+      goToFinal(regular: true);
     }
   }
   previusStep(){
@@ -78,7 +98,7 @@ class _donationPage extends State<donationsPage>{
         alignment: Alignment.center,
         child: Stack(
           children: [
-            Image.asset("assets/zaglushka.png", width: _width, height: 120,),
+            Container(child: Image.asset("assets/zaglushka.png", width: _width, height: 120, fit: BoxFit.fill,),),
             Positioned(top: 4, right: 4, child: GestureDetector(
               child: Container(
                 padding: EdgeInsets.all(2),
@@ -100,6 +120,7 @@ class _donationPage extends State<donationsPage>{
     return GestureDetector(
       onTap: (){
         setState(() {
+          preview = Image.asset("assets/zaglushka.png"  );
           hasImage = true;
         });
       },
@@ -293,6 +314,7 @@ class _donationPage extends State<donationsPage>{
             width: _width,
             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
             child: DropdownButton(
+              underline: Container(),
               icon: Container(child: Expanded(flex: 1, child: Container(child: Icon(Icons.keyboard_arrow_down), alignment: Alignment.centerRight,),),),
               isExpanded: true,
               value: selectedPay,
@@ -332,6 +354,7 @@ class _donationPage extends State<donationsPage>{
           ),
           padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
           child: DropdownButton(
+            underline: Container(),
             icon: Container(child: Expanded(flex: 1, child: Container(child: Icon(Icons.keyboard_arrow_down), alignment: Alignment.centerRight,),),),
             value: author,
             items: [
@@ -416,7 +439,7 @@ class _donationPage extends State<donationsPage>{
               border: Border.all(color: greyBorder),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Row(
               children: [
                 Expanded(child: Text(_emptyDate?"Выберите дату":formateToLocalDate(_date), style: _emptyDate?grey16hint:black16,),),
@@ -493,7 +516,7 @@ class _donationPage extends State<donationsPage>{
                     minWidth: _width*.9,
                     onPressed: (){
                       if(!needDate || _date!=null)
-                        print("ok");
+                        goToFinal();
                       else{
                         print("not ok");
                       }
@@ -593,17 +616,17 @@ class _donationPage extends State<donationsPage>{
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 mediaFile(),
-                                SizedBox(height: 12,),
+                                SizedBox(height: 24,),
                                 naming(),
-                                SizedBox(height: 12,),
+                                SizedBox(height: 24,),
                                 payValue(),
-                                _regular?SizedBox():SizedBox(height: 12,),
+                                _regular?SizedBox():SizedBox(height: 24,),
                                 point(),
-                                SizedBox(height: 12,),
+                                SizedBox(height: 24,),
                                 description(),
-                                SizedBox(height: 12,),
+                                SizedBox(height: 24,),
                                 whereToTake(),
-                                SizedBox(height: 12,),
+                                SizedBox(height: 24,),
                                 _regular?whoToTake():SizedBox()
                               ],
                             )
