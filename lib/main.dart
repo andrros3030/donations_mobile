@@ -137,37 +137,65 @@ class _startPageState extends State<startPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: greyBorder),
-                      color: greyField
-                  ),
-                  child: ListTile(
-                    title: Text("Целевой сбор", style: black20Bold.copyWith(fontSize: 18),),
-                    subtitle: Text("Когда есть определенная цель", style: grey14.copyWith(fontSize: 16),),
-                    leading: Container(child: Icon(IconPack.scope, color: primaryBlue,),),
-                    trailing: Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey),),
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(false)));
-                    },
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(false)));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: greyBorder),
+                        color: greyField
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Row(
+                      children: [
+                        Container(child: Icon(IconPack.scope, color: primaryBlue, size: 30,), padding: EdgeInsets.only(bottom: 24),),
+                        SizedBox(width: 24,),
+                        Expanded(
+                          child: Container(child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Целевой сбор", style: black20Bold.copyWith(fontSize: 18), textAlign: TextAlign.start,),
+                              Text("Когда есть определенная цель", style: grey14.copyWith(fontSize: 16), textAlign: TextAlign.start,),
+                            ],
+                          ),),
+                        ),
+                        SizedBox(width: 24,),
+                        Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 36,),),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 15,),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: greyBorder),
-                      color: greyField
-                  ),
-                  child: ListTile(
-                    title: Text("Регулярный сбор", style: black20Bold.copyWith(fontSize: 18),),
-                    subtitle: Text("Когда помощь нужна ежемесячно", style: grey14.copyWith(fontSize: 16),),
-                    leading: Container(child: Icon(IconPack.calendar, color: primaryBlue,),),
-                    trailing: Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey),),
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(true)));
-                    },
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>new donationsPage(true)));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: greyBorder),
+                        color: greyField
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Row(
+                      children: [
+                        Container(child: Icon(IconPack.calendar, color: primaryBlue, size: 30,), padding: EdgeInsets.only(bottom: 24),),
+                        SizedBox(width: 24,),
+                        Expanded(
+                          child: Container(child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Регулярный сбор", style: black20Bold.copyWith(fontSize: 18), textAlign: TextAlign.start,),
+                              Text("Когда помощь нужна ежемесячно", style: grey14.copyWith(fontSize: 16), textAlign: TextAlign.start,),
+                            ],
+                          ),),
+                        ),
+                        SizedBox(width: 24,),
+                        Container(child: Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 36,),),
+                      ],
+                    ),
                   ),
                 ),
               ],

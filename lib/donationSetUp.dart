@@ -117,6 +117,7 @@ class _donationPage extends State<donationsPage>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(IconPack.addimage, color: primaryBlue, size: 36,),
+              SizedBox(width: 15,),
               Text("Загрузить обложку", style: blue16,),
             ],
           ),
