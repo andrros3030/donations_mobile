@@ -73,7 +73,7 @@ class finalView extends StatelessWidget{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Помогитее первым", style: black16.copyWith(fontSize: 14), textAlign: TextAlign.start,),
+                      Text("Помогите первым", style: black16.copyWith(fontSize: 14), textAlign: TextAlign.start,),
                       SizedBox(height: 8,),
                       Container(
                         width: _width*.5,
