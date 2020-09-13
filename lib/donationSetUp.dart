@@ -197,6 +197,7 @@ class _donationPage extends State<donationsPage>{
           ),
           padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             controller: _enteredValue,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(

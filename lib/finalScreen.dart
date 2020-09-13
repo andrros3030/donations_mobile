@@ -50,7 +50,7 @@ class finalView extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            preview!=null?FittedBox(child: preview, fit: BoxFit.fill,):SizedBox(),
+            preview!=null?Container(child: Image.asset("assets/zaglushka.png", width: _width, height: 120, fit: BoxFit.fill,),):SizedBox(),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               alignment:Alignment.centerLeft,
